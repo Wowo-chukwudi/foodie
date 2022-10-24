@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodie/card2.dart';
 
 import 'card1.dart';
 
@@ -16,10 +17,8 @@ class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     //Replaced with Card1
     const Card1(),
-    //TODO: Replace with Card2
-    Container(
-      color: Colors.blue,
-    ),
+    //Replaced with Card2
+    const Card2(),
     //TODO: Replace with Card3
     Container(
       color: Colors.green,
