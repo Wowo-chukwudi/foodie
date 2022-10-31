@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CircleImage extends StatelessWidget {
-  const CircleImage({Key? key, this.imageProvider, this.imageRadius})
+  const CircleImage({Key? key, this.imageProvider, this.imageRadius = 20})
       : super(key: key);
 
-  final double? imageRadius;
+  final double imageRadius;
   final ImageProvider? imageProvider;
 
   @override
@@ -14,7 +14,7 @@ class CircleImage extends StatelessWidget {
       radius: imageRadius,
       child: CircleAvatar(
         backgroundImage: imageProvider,
-        radius: imageRadius! - 5,
+        radius: imageRadius - 5,
       ),
     );
   }

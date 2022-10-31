@@ -3,7 +3,7 @@ import 'package:foodie/foodie_theme.dart';
 
 import 'circle_image.dart';
 
-class AuthorCard extends StatelessWidget {
+class AuthorCard extends StatefulWidget {
   const AuthorCard(
       {Key? key,
       required this.authorName,
@@ -16,8 +16,15 @@ class AuthorCard extends StatelessWidget {
   final ImageProvider? imageProvider;
 
   @override
+  State<AuthorCard> createState() => _AuthorCardState();
+}
+
+class _AuthorCardState extends State<AuthorCard> {
+  bool _isFavorited = false;
+  bool _likedRecipe = false;
+
+  @override
   Widget build(BuildContext context) {
-    //TODO: Replace this container
     return Container(
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -26,7 +33,7 @@ class AuthorCard extends StatelessWidget {
           Row(
             children: [
               CircleImage(
-                imageProvider: imageProvider,
+                imageProvider: widget.imageProvider,
                 imageRadius: 28,
               ),
               const SizedBox(
@@ -36,11 +43,11 @@ class AuthorCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    authorName,
+                    widget.authorName,
                     style: FoodieTheme.lightTextTheme.headline2,
                   ),
                   Text(
-                    title,
+                    widget.title,
                     style: FoodieTheme.lightTextTheme.headline3,
                   ),
                 ],
@@ -49,14 +56,20 @@ class AuthorCard extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              const snackBar = SnackBar(
-                content: Text('You liked this recipe'),
+              setState(() {
+                _isFavorited = !_isFavorited;
+                _likedRecipe = !_likedRecipe;
+              });
+              final snackBar = SnackBar(
+                content: Text(_likedRecipe
+                    ? 'You liked this recipe'
+                    : 'You unliked this recipe'),
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
-            icon: const Icon(Icons.favorite_border),
+            icon: Icon(_isFavorited ? Icons.favorite : Icons.favorite_border),
             iconSize: 25,
-            color: Colors.grey,
+            color: Colors.red,
           )
         ],
       ),
