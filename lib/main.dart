@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'foodie_theme.dart';
 import 'home.dart';
+import 'models/models.dart';
 
 void main() {
   // 1
@@ -22,7 +24,16 @@ class Foodie extends StatelessWidget {
       title: 'Foodie',
       theme: theme,
       // 4
-      home: const Home(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => TabManager(),
+          ),
+          //Added GroceryManager Provider
+          ChangeNotifierProvider(create: (context) => GroceryManager()),
+        ],
+        child: const Home(),
+      ),
     );
   }
 }

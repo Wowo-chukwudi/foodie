@@ -14,21 +14,21 @@ class TodayRecipeListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         top: 16,
-        left: 16,
-        right: 16,
+        left: 12,
+        right: 12,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Recipes of the Day',
-            style: FoodieTheme.darkTextTheme.headline1,
+            style: Theme.of(context).textTheme.headline1,
           ),
           const SizedBox(
             height: 16,
           ),
           Container(
-            height: 400,
+            height: 350,
             //Added ListView here
             color: Colors.transparent,
             child: ListView.separated(
@@ -40,7 +40,7 @@ class TodayRecipeListView extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return const SizedBox(
-                  width: 16,
+                  width: 8,
                 );
               },
             ),
